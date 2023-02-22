@@ -4,8 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginFormSchema } from "../../pages/Login/loginFormSchema";
 import KenzieHubLogo from "../../assets/LogoKenzieHub.svg";
 import { StyledLoginMain } from "./style";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
 
-export const LoginPage = ({ loginUser }) => {
+export const LoginPage = () => {
+  const { loginUser } = useContext(UserContext);
+
   const {
     handleSubmit,
     register,

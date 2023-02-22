@@ -2,14 +2,26 @@ import { Link } from "react-router-dom";
 import { StyledHomeMain } from "./style";
 import KenzieHubLogo from "../../assets/LogoKenzieHub.svg";
 import PlusButton from "../../assets/PlusButton.svg";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
+import { TechsList } from "../../components/TechsList";
+import { TechCreateForm } from "../../components/TechCreateForm";
+import { TechContext } from "../../providers/TechContext";
+import { TechEditForm } from "../../components/TechEditForm";
 
-export const HomePage = ({ user, logoutUser}) => {
+export const HomePage = () => {
+  const { user, logoutUser } = useContext(UserContext);
+  const { modalAdd, setModalAdd } = useContext(TechContext);
+  const { modalEdit } = useContext(TechContext);
+
   return (
     <StyledHomeMain>
       <div className="main__container">
         <section className="header__container">
-          <img onClick={(logoutUser)} src={KenzieHubLogo} alt="KenzieHub Logo" />
-          <Link onClick={(logoutUser)} to="/">Sair</Link>
+          <img onClick={logoutUser} src={KenzieHubLogo} alt="KenzieHub Logo" />
+          <Link onClick={logoutUser} to="/">
+            Sair
+          </Link>
         </section>
         <section className="user__container">
           <h1>{user.name}</h1>
@@ -18,16 +30,17 @@ export const HomePage = ({ user, logoutUser}) => {
         <section className="techs__container">
           <div className="title__container">
             <h1>Tecnologias</h1>
-            <img src={PlusButton} alt="Plus Button" />
+            <img
+              onClick={() => setModalAdd(true)}
+              src={PlusButton}
+              alt="Plus Button"
+            />
           </div>
-          <ul>
-            {user.techs.map((tech) => (
-              <li key={tech.id}>
-                <h3 className="tech__title">{tech.title}</h3>
-                <h3 className="tech__status">{tech.status}</h3>
-              </li>
-            ))}
-          </ul>
+          <TechsList />
+        </section>
+        <section>
+          {modalAdd && <TechCreateForm />}
+          {modalEdit && <TechEditForm />}
         </section>
       </div>
     </StyledHomeMain>

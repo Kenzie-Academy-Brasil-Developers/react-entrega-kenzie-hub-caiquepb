@@ -111,6 +111,9 @@ export const StyledHomeMain = styled.main`
 
       padding: 22px 8.5px;
 
+      max-height: 416px;
+      overflow-y: auto;
+
       background: var(--color-gray-3);
       border-radius: 4px;
 
@@ -136,14 +139,26 @@ export const StyledHomeMain = styled.main`
           color: var(--color-gray-0);
         }
 
-        .tech__status {
-          font-family: "Inter";
-          font-style: normal;
-          font-weight: 400;
-          font-size: 12.182px;
-          line-height: 22px;
+        .tech__container {
+          display: flex;
+          align-items: center;
+          gap: 10px;
 
-          color: var(--color-gray-1);
+          .tech__status {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12.182px;
+            line-height: 22px;
+
+            color: var(--color-gray-1);
+          }
+
+          .tech__img {
+            height: 21.99px;
+            width: 21.99px;
+            color: white;
+          }
         }
       }
       li:hover {
@@ -153,6 +168,15 @@ export const StyledHomeMain = styled.main`
           color: var(--color-gray-0);
         }
       }
+    }
+    .techNone__title {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14.2123px;
+      line-height: 24px;
+
+      color: var(--color-gray-0);
     }
   }
 `;

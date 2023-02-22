@@ -2,8 +2,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerFormSchema } from "../../pages/Register/registerFormSchema";
 import { Input } from "./InputRegisterForm";
+import { UserContext } from "../../providers/UserContext";
+import { useContext } from "react";
 
-export const RegisterForm = ({ registerUser }) => {
+export const RegisterForm = () => {
+  const { registerUser } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
