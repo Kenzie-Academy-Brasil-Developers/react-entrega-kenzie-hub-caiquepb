@@ -3,12 +3,14 @@ import { useForm } from "react-hook-form";
 import { TechContext } from "../../providers/TechContext";
 import { FormModalEdit } from "./style";
 
-export const TechEditForm = () => {
+export const TechEditForm = ({ tech }) => {
   const { techEdit, setModalEdit } = useContext(TechContext);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm({
+    mode: "onSubmit",
+  });
 
   const submit = (formData) => {
-    techEdit(techId, formData);
+    techEdit(tech.id, formData);
     setModalEdit(false);
   };
 
@@ -22,7 +24,12 @@ export const TechEditForm = () => {
         <form onSubmit={handleSubmit(submit)}>
           <fieldset>
             <label htmlFor="title">Nome</label>
-            <input id="title" type="text" {...register("title")} />
+            <input
+              value={tech.title}
+              id="title"
+              type="text"
+              // {...register("title")}
+            />
           </fieldset>
           <fieldset>
             <label htmlFor="status">Selecionar status</label>
@@ -33,8 +40,10 @@ export const TechEditForm = () => {
             </select>
           </fieldset>
           <div className="buttons__container">
-            <button className="editButton" type="submit">Salvar alterações</button>
-            <button className="deleteButton" >Excluir</button>
+            <button className="editButton" type="submit">
+              Salvar alterações
+            </button>
+            {/* <button className="deleteButton">Excluir</button> */}
           </div>
         </form>
       </div>

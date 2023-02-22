@@ -7,12 +7,11 @@ import { UserContext } from "../../providers/UserContext";
 import { TechsList } from "../../components/TechsList";
 import { TechCreateForm } from "../../components/TechCreateForm";
 import { TechContext } from "../../providers/TechContext";
-import { TechEditForm } from "../../components/TechEditForm";
 
 export const HomePage = () => {
   const { user, logoutUser } = useContext(UserContext);
   const { modalAdd, setModalAdd } = useContext(TechContext);
-  const { modalEdit } = useContext(TechContext);
+  
 
   return (
     <StyledHomeMain>
@@ -38,10 +37,7 @@ export const HomePage = () => {
           </div>
           <TechsList />
         </section>
-        <section>
           {modalAdd && <TechCreateForm />}
-          {modalEdit && <TechEditForm />}
-        </section>
       </div>
     </StyledHomeMain>
   );
